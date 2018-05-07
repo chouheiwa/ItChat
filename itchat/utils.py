@@ -82,12 +82,15 @@ def check_file(fileDir):
         return False
 
 def print_qr(fileDir):
-    if config.OS == 'Darwin':
-        subprocess.call(['open', fileDir])
-    elif config.OS == 'Linux':
-        subprocess.call(['xdg-open', fileDir])
-    else:
-        os.startfile(fileDir)
+    try:
+        if config.OS == 'Darwin':
+            subprocess.call(['open', fileDir])
+        elif config.OS == 'Linux':
+            subprocess.call(['xdg-open', fileDir])
+        else:
+            os.startfile(fileDir)
+    except:
+        pass
 
 def print_cmd_qr(qrText, white=BLOCK, black='  ', enableCmdQR=True):
     blockCount = int(enableCmdQR)
